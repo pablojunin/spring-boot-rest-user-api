@@ -11,13 +11,13 @@ https://github.com/pablojunin/spring-boot-rest-user-api.git
 **2. Run application**
 
 ```bash
-mvn spring-boot:run
+mvnw spring-boot:run
 ```
 
 **3. Run test**
 
 ```bash
-mvn test
+mvnw test
 ```
 
 **4. Username and password for to get token**
@@ -28,6 +28,45 @@ mvn test
 	"password":"password"
 }
 ```
+
+**5. Steps to execute the app**
+
+    a. Create an user with POST /api/v1/register/
+        ```bash
+            {
+                "name": "Pablo",
+                "email": "poyarzabal@gmail.com",
+                "password": "passpass",
+                "isactive": true,
+                "phones": [
+                        {
+                            "number": "65656565",
+                            "citycode": "2632",
+                            "countrycode": "57"
+                        },
+                        {
+                            "number": "65656565",
+                            "citycode": "2632",
+                            "countrycode": "57"
+                        },
+                        {
+                            "number": "65656565",
+                            "citycode": "2632",
+                            "countrycode": "57"
+                        }
+                    ]
+            }
+        ```
+
+    b. Authenticate with POST /authenticate/
+        ```bash
+            {
+            "username":"poyarzabal@gmail.com",
+            "password":"passpass"
+            }
+        ```
+
+    c. Use the endpoints with "Authorization: Bearer *token*" in the header
 
 The app will start running at <http://localhost:8080> on the context 'api/v1' <http://localhost:8080/api/v1>
 
@@ -73,4 +112,18 @@ curl -X POST "http://localhost:8080/api/v1/register/" -H "accept: application/js
 
 ## Explore with swagger
 
-To see the documentation with swagger: <http://localhost:8080/swagger-ui/>
+To see the documentation with swagger: <http://localhost:8080/swagger-ui/> 
+
+To see the documentation with api-docs: <http://localhost:8080/v2/api-docs>
+
+
+## Explore with database
+
+To see the h2 db: <http://localhost:8080/h2-console>
+Conf: Driver Class=org.h2.Driver, JDBC URL=jdbc:h2:mem:testdb, User Name=sa, password=
+
+## Import json file to Postman
+
+Include the json file to import into Postman with all endpoints to run
+
+file: /postman/userapi.postman_collection.json

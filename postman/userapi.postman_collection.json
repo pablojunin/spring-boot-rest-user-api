@@ -1,0 +1,182 @@
+{
+	"variables": [],
+	"info": {
+		"name": "bci-userapi",
+		"_postman_id": "4a78b142-aab1-b548-8795-ed365da48748",
+		"description": "User Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/restaurant/authenticate",
+			"request": {
+				"url": "localhost:8080/authenticate",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"username\":\"poyarzabal58736@gmail.com\",\n\"password\":\"pass\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/restaurant/api/v1/users",
+			"request": {
+				"url": "http://localhost:8080/api/v1/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXN0YXVyYW50IiwiZXhwIjoxNjQ0MjU4MTE0LCJpYXQiOjE2NDQyNDAxMTR9.O0ar5-E59mQGWt0CT3YiSDkM4rHqbnqDEIDz9aeELUJxDHFpS3J2yTy6CGaJlaaHu7QZkYL5CyQPe3CbpD7kkQ",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/restaurant/api/v1/users/:id",
+			"request": {
+				"url": "http://localhost:8080/api/v1/users/3",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXN0YXVyYW50IiwiZXhwIjoxNjQ0MjU4MTE0LCJpYXQiOjE2NDQyNDAxMTR9.O0ar5-E59mQGWt0CT3YiSDkM4rHqbnqDEIDz9aeELUJxDHFpS3J2yTy6CGaJlaaHu7QZkYL5CyQPe3CbpD7kkQ",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/restaurant/api/v1/users",
+			"request": {
+				"url": "http://localhost:8080/api/v1/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXN0YXVyYW50IiwiZXhwIjoxNjQ0Mjc2NTEyLCJpYXQiOjE2NDQyNTg1MTJ9.7pwKqch6H1vdpAsP3BaRQUOikKHoA1BNwT2aerF_D-peegu3LOak_bvWmCnUICtTkirI_1LUl5KV-Fg6uu1i_Q",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Pablo\",\n    \"email\": \"poyarzabal@gmail.com\",\n    \"password\": \"pass\",\n    \"isactive\": true,\n    \"phones\": [\n\t    \t{\n\t    \t\t\"number\": \"65656565\",\n\t    \t\t\"citycode\": \"2632\",\n\t    \t\t\"countrycode\": \"57\"\n\t    \t},\n\t    \t{\n\t    \t\t\"number\": \"65656565\",\n\t    \t\t\"citycode\": \"2632\",\n\t    \t\t\"countrycode\": \"57\"\n\t    \t},\n\t    \t{\n\t    \t\t\"number\": \"65656565\",\n\t    \t\t\"citycode\": \"2632\",\n\t    \t\t\"countrycode\": \"57\"\n\t    \t}\n    \t]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/restaurant/api/v1/register/",
+			"request": {
+				"url": "http://localhost:8080/api/v1/register/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXN0YXVyYW50IiwiZXhwIjoxNjQ0MjgyODQ3LCJpYXQiOjE2NDQyNjQ4NDd9.5bqnusA7TTZ45eVh22YyagBwfeY6qxlSgMfE9Is_T05BQ9tT07Ybl57_mGB-Plwg_QCuOzsVZbTq9T96pp8v4g",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Pablo\",\n    \"email\": \"poyarzabal21533s2@gmail.com\",\n    \"password\": \"pass\",\n    \"isactive\": true,\n    \"phones\": [\n\t    \t{\n\t    \t\t\"number\": \"65656565\",\n\t    \t\t\"citycode\": \"2632\",\n\t    \t\t\"countrycode\": \"57\"\n\t    \t},\n\t    \t{\n\t    \t\t\"number\": \"65656565\",\n\t    \t\t\"citycode\": \"2632\",\n\t    \t\t\"countrycode\": \"57\"\n\t    \t},\n\t    \t{\n\t    \t\t\"number\": \"65656565\",\n\t    \t\t\"citycode\": \"2632\",\n\t    \t\t\"countrycode\": \"57\"\n\t    \t}\n    \t]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/restaurant/api/v1/users",
+			"request": {
+				"url": "http://localhost:8080/api/v1/users/4",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXN0YXVyYW50IiwiZXhwIjoxNjQ0MjYzMzQzLCJpYXQiOjE2NDQyNDUzNDN9.JI6s9CkAg33oJZj5FRSPwk0TuWPF6nUqpiJH8HO0dEUZfDut-kntBVJlSveuCTEKavwR67894co6bFP7M8zCVA",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Pablo4\",\n    \"email\": \"poyarzabal@gmail.com\",\n    \"password\": \"pass\",\n    \"phones\": [\n        {\n            \"number\": \"6565656514\",\n            \"citycode\": \"2632\",\n            \"countrycode\": \"57\"\n        },\n        {\n            \"number\": \"6565656514\",\n            \"citycode\": \"2632\",\n            \"countrycode\": \"57\"\n        },\n        {\n            \"number\": \"6565656514\",\n            \"citycode\": \"2632\",\n            \"countrycode\": \"57\"\n        }\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/restaurant/api/v1/users/:id",
+			"request": {
+				"url": "http://localhost:8080/api/v1/users/4",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXN0YXVyYW50IiwiZXhwIjoxNjQ0MjYzMzQzLCJpYXQiOjE2NDQyNDUzNDN9.JI6s9CkAg33oJZj5FRSPwk0TuWPF6nUqpiJH8HO0dEUZfDut-kntBVJlSveuCTEKavwR67894co6bFP7M8zCVA",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/restaurant/api/v1/users",
+			"request": {
+				"url": "http://localhost:8080/api/v1/users",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXN0YXVyYW50IiwiZXhwIjoxNjQ0MjU4MTE0LCJpYXQiOjE2NDQyNDAxMTR9.O0ar5-E59mQGWt0CT3YiSDkM4rHqbnqDEIDz9aeELUJxDHFpS3J2yTy6CGaJlaaHu7QZkYL5CyQPe3CbpD7kkQ",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

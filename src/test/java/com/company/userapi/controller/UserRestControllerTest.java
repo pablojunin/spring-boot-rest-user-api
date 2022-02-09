@@ -108,7 +108,7 @@ class UserRestControllerTest {
 		ResponseEntity<UserDTO> response = restTemplate.exchange(getRootUrl() + "/api/v1/register/", HttpMethod.POST, entity, UserDTO.class);
 		
 		Assertions.assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);	
-		Assertions.assertEquals(response.getBody().getMessage(), "email - no debe estar vacío");	
+		Assertions.assertEquals(response.getBody().getMessage(), "email - no debe estar vacÃ­o");	
 
 		//pass empty
 		String userNameToCreate2 = "poyarzabaleduardo@gmail.com";
@@ -120,7 +120,7 @@ class UserRestControllerTest {
 		ResponseEntity<UserDTO> response2 = restTemplate.exchange(getRootUrl() + "/api/v1/register/", HttpMethod.POST, entity2, UserDTO.class);
 		
 		Assertions.assertEquals(response2.getStatusCode(), HttpStatus.BAD_REQUEST);	
-		Assertions.assertEquals(response2.getBody().getMessage(), "password - no debe estar vacío");	
+		Assertions.assertEquals(response2.getBody().getMessage(), "password - no debe estar vacÃ­o");	
 
 		//pass empty
 		String userNameToCreate3 = "poyarzabaleduardo@gmail.com";
@@ -144,7 +144,7 @@ class UserRestControllerTest {
 		ResponseEntity<UserDTO> response4 = restTemplate.exchange(getRootUrl() + "/api/v1/register/", HttpMethod.POST, entity4, UserDTO.class);
 		
 		Assertions.assertEquals(response4.getStatusCode(), HttpStatus.BAD_REQUEST);	
-		Assertions.assertEquals(response4.getBody().getMessage(), "email - debe ser una dirección de correo electrónico con formato correcto");			
+		Assertions.assertEquals(response4.getBody().getMessage(), "email - debe ser una direcciÃ³n de correo electrÃ³nico con formato correcto");			
 	}
 	
 	@Test
