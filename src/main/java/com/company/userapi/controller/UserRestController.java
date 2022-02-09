@@ -56,6 +56,7 @@ public class UserRestController {
 			userService.findAll().forEach(users::add);
 
 			if (users.isEmpty()) {
+				//TODO add custom exception
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 
@@ -77,6 +78,7 @@ public class UserRestController {
 			UserDTOResponse userTemp = this.convertToDTO(userData.get());
 			return new ResponseEntity<>(userTemp, HttpStatus.OK);
 		} else {
+			//TODO add custom exception
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
@@ -119,6 +121,7 @@ public class UserRestController {
 			UserDTOResponse userTemp = this.convertToDTO(savedUser);
 			return new ResponseEntity<>(userTemp, HttpStatus.OK);
 		} else {
+			//TODO add custom exception
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
@@ -129,6 +132,7 @@ public class UserRestController {
 			userService.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
+			//TODO add custom exception
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -139,16 +143,9 @@ public class UserRestController {
 			userService.deleteAll();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
+			//TODO add custom exception
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 	}
-	/*
-	 * @GetMapping("/users/phones") public ResponseEntity<List<User>> findByPhones()
-	 * { try { List<Tutorial> users = userRepository.findByPublished(true);
-	 * 
-	 * if (users.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
-	 * return new ResponseEntity<>(tutorials, HttpStatus.OK); } catch (Exception e)
-	 * { return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); } }
-	 */
 }
