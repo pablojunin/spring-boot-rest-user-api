@@ -1,6 +1,5 @@
 package com.company.userapi.service;
 
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +8,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.company.userapi.exception.EmailAlreadyExistException;
+import com.company.userapi.model.Phone;
 import com.company.userapi.model.User;
 import com.company.userapi.repository.UserRepository;
 
@@ -17,6 +18,9 @@ public class UserService implements IUserService{
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	private IPhoneService phoneService;
 	
 	@Override
 	public Iterable<User> findAll() {
@@ -35,6 +39,21 @@ public class UserService implements IUserService{
 
 	@Override
 	public User save(User user) {
+		List<User> usersByEmail = this.findByEmail(user.getEmail());
+		if (usersByEmail.size() > 0) {
+			throw new EmailAlreadyExistException(user.getEmail());
+		}
+		for (Phone phone : user.getPhones()) {
+			phoneService.save(phone);
+		}
+		return userRepository.save(user);
+	}
+	
+
+	public User update(User user) {
+		for (Phone phone : user.getPhones()) {
+			phoneService.save(phone);
+		}
 		return userRepository.save(user);
 	}
 

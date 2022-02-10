@@ -28,6 +28,7 @@ import com.company.userapi.model.Phone;
 import com.company.userapi.model.User;
 import com.company.userapi.service.IPhoneService;
 import com.company.userapi.service.IUserService;
+import com.company.userapi.util.ModelToDTOUtils;
 
 @RestController
 @RequestMapping(path = "/api/v1", produces = { "application/json" })
@@ -39,14 +40,9 @@ public class UserRestController {
 	
 	@Autowired
 	private IUserService userService;
-
+	
 	@Autowired
-	private ModelMapper modelMapper;
-
-	private UserDTOResponse convertToDTO(User user) {
-		UserDTOResponse userTemp = modelMapper.map(user, UserDTOResponse.class);
-		return userTemp;
-	}
+	private ModelToDTOUtils modelToDTOUtils;
 	
 	@GetMapping("/users")
 	public ResponseEntity<List<UserDTOResponse>> getAllUsers() {
@@ -60,10 +56,7 @@ public class UserRestController {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 
-			List<UserDTOResponse> usersDTO = new ArrayList<UserDTOResponse>();
-			for (User user : users) {
-				usersDTO.add(this.convertToDTO(user));
-			}
+			List<UserDTOResponse> usersDTO = modelToDTOUtils.convertToDTO(users);
 
 			return new ResponseEntity<>(usersDTO, HttpStatus.OK);
 		} catch (Exception e) {
@@ -75,7 +68,7 @@ public class UserRestController {
 	public ResponseEntity<UserDTOResponse> getUserById(@PathVariable("id") UUID id) {
 		Optional<User> userData = userService.findById(id);
 		if (userData.isPresent()) {
-			UserDTOResponse userTemp = this.convertToDTO(userData.get());
+			UserDTOResponse userTemp = modelToDTOUtils.convertToDTO(userData.get());
 			return new ResponseEntity<>(userTemp, HttpStatus.OK);
 		} else {
 			//TODO add custom exception
@@ -86,29 +79,16 @@ public class UserRestController {
 	@PostMapping("/register/")
 	public ResponseEntity<UserDTOResponse> createUser(@Valid @RequestBody UserDTO user) {
 
-		for (Phone phone : user.getPhones()) {
-			phoneService.save(phone);
-		}
-
-		List<User> usersByEmail = userService.findByEmail(user.getEmail());
-		if (usersByEmail.size() > 0) {
-			throw new EmailAlreadyExistException(user.getEmail());
-		}
-
 		User _user = userService.save(new User(user.getName(), user.getEmail(), user.getPassword(), user.getToken(),
 				user.getIsactive(), user.getPhones()));
 
-		UserDTOResponse userTemp = this.convertToDTO(_user);
+		UserDTOResponse userTemp = modelToDTOUtils.convertToDTO(_user);
 		return new ResponseEntity<>(userTemp, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/users/{id}")
 	public ResponseEntity<UserDTOResponse> updateUser(@PathVariable("id") UUID id, @RequestBody UserDTO user) {
 		Optional<User> userData = userService.findById(id);
-
-		for (Phone phone : user.getPhones()) {
-			phoneService.save(phone);
-		}
 
 		if (userData.isPresent()) {
 			User _user = userData.get();
@@ -117,8 +97,8 @@ public class UserRestController {
 			_user.setPassword(user.getPassword());
 			_user.setPhones(user.getPhones());
 
-			User savedUser = userService.save(_user);
-			UserDTOResponse userTemp = this.convertToDTO(savedUser);
+			User savedUser = userService.update(_user);
+			UserDTOResponse userTemp = modelToDTOUtils.convertToDTO(savedUser);
 			return new ResponseEntity<>(userTemp, HttpStatus.OK);
 		} else {
 			//TODO add custom exception

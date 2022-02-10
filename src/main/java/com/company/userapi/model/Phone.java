@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Phone {
@@ -12,6 +14,10 @@ public class Phone {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+    
 	private String number;
 	private String citycode;
 	private String countrycode;
